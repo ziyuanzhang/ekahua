@@ -1,0 +1,30 @@
+{
+  "id": "2379470",
+  "name": "犀牛",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1640426",
+      "name": "错误",
+      "font_class": "cuowu",
+      "unicode": "e644",
+      "unicode_decimal": 58948
+    },
+    {
+      "icon_id": "4511476",
+      "name": "修改",
+      "font_class": "xiugai1",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "991433",
+      "name": "成功",
+      "font_class": "chenggong",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    }
+  ]
+}
