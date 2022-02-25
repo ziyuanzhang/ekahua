@@ -84,7 +84,7 @@ export default {
   },
   data() {
     return {
-      isAgree: false,
+      isAgree: true,
       mobileNum: "",
       recordNum: "粤ICP备2021153686号",
       showShield: false,

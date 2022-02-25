@@ -57,7 +57,9 @@
           class="input"
           type="text"
           v-model="name"
+          maxlength="8"
           placeholder="请输入您的姓名"
+          @input="nameInputFn"
         />
         <img
           v-if="name.length > 0"
@@ -83,13 +85,6 @@
         />
       </div>
       <div class="item">
-        <!-- <input
-          @focus="birthdayFun"
-          class="input"
-          type="text"
-          v-model="birthday"
-          placeholder="请输入您的出生日期"
-        /> -->
         <div class="birthday" @click="birthdayFun">{{ birthday }}</div>
         <img
           v-if="birthday.length > 0"
@@ -425,6 +420,9 @@ export default {
       }
     },
     //--------------------
+    nameInputFn() {
+      this.name = this.name.replace(/[^\u4E00-\u9FA5]/g, "");
+    },
     clearInput(type) {
       if (type === "name") {
         this.name = "";

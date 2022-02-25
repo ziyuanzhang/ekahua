@@ -53,6 +53,10 @@ export default {
     showWarn: {
       type: Boolean,
       default: false
+    },
+    userId: {
+      type: String,
+      default: ""
     }
   },
   data() {
@@ -72,7 +76,7 @@ export default {
   methods: {
     async getMoneyFun(item) {
       let fd = new FormData();
-      fd.append("userId", sessionStorage.userId);
+      fd.append("userId", this.userId);
       fd.append("requestForm", "H5");
       fd.append("productId", item.id);
       let res = await this.$ajax.post("/api/product/countSum", fd);

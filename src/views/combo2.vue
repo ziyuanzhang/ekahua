@@ -1,11 +1,11 @@
 <template>
   <div class="combo2-page">
-    <!-- <img
+    <img
       class="leftImg"
       @click="downloadFun"
       src="../assets/img/combo1/left-more.png"
       alt=""
-    /> -->
+    />
     <img class="tips-top" src="../assets/img/combo1/tips-top.png" alt="" />
     <img class="pass" src="../assets/img/combo1/pass.png" alt="" />
     <span class="amount">{{ amount }}元</span>
@@ -17,15 +17,19 @@
       />
     </div>
     <div class="split"></div>
-    <vProduct :list="list" :showWarn="true"></vProduct>
-    <!-- <div class="btn-list">
+    <vProduct
+      :list="list"
+      :showWarn="true"
+      :userId="$route.query.userId"
+    ></vProduct>
+    <div class="btn-list">
       <img class="tips" src="../assets/img/combo1/tips-app.png" />
       <img
         class="btn"
         @click="downloadFun"
         src="../assets/img/combo1/product-btn.png"
       />
-    </div> -->
+    </div>
     <div class="split"></div>
     <div class="footer">
       <img class="icon" src="../assets/img/combo1/icon.jpg" alt="" />

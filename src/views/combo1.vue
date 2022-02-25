@@ -49,7 +49,7 @@
         alt=""
       />
       <div class="split"></div>
-      <vProduct :list="list"></vProduct>
+      <vProduct :list="list" :userId="$route.query.userId"></vProduct>
       <div class="btn-list">
         <img class="tips" src="../assets/img/combo1/tips-app.png" />
         <img
