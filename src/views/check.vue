@@ -44,7 +44,7 @@
 import vMatchAgency from "@/components/vMatchAgency";
 export default {
   components: {
-    vMatchAgency
+    vMatchAgency,
   },
   data() {
     return {
@@ -53,7 +53,7 @@ export default {
       activeAdd: false,
       whoFirstFinish: "",
       list: [],
-      showAgency: false
+      showAgency: false,
     };
   },
   async mounted() {
@@ -82,8 +82,9 @@ export default {
           this.$router.push({
             path: this.$route.query.goWhichPage,
             query: {
-              userId: this.$route.query.userId
-            }
+              userId: this.$route.query.userId,
+              showDownloadBtn: this.$route.query.showDownloadBtn,
+            },
           });
         }
       } else {
@@ -96,10 +97,10 @@ export default {
     // let fd = new  FormData();
     //  fd.append("userId", this.$route.query.userId);
     let data = {
-      userId: this.$route.query.userId
+      userId: this.$route.query.userId,
     };
     let res = await this.$ajax.get("/api/common/getMatchProduct", {
-      params: data
+      params: data,
     });
     if (res?.data.status === 0) {
       this.list = res.data.data;
@@ -110,8 +111,9 @@ export default {
           this.$router.push({
             path: this.$route.query.goWhichPage,
             query: {
-              userId: this.$route.query.userId
-            }
+              userId: this.$route.query.userId,
+              showDownloadBtn: this.$route.query.showDownloadBtn,
+            },
           });
         }
       } else {
@@ -127,17 +129,18 @@ export default {
 
       let data = {
         userId: this.$route.query.userId,
-        push: type === "ok" ? "1" : "0"
+        push: type === "ok" ? "1" : "0",
       };
       await this.$ajax.get("/api/common/userSubmit", { params: data });
       this.$router.push({
         path: this.$route.query.goWhichPage,
         query: {
-          userId: this.$route.query.userId
-        }
+          userId: this.$route.query.userId,
+          showDownloadBtn: this.$route.query.showDownloadBtn,
+        },
       });
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="less" scoped>

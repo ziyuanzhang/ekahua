@@ -43,13 +43,17 @@
 import vCodeFailexplain from "@/components/vCodeFailexplain";
 export default {
   components: {
-    vCodeFailexplain
+    vCodeFailexplain,
   },
   props: {
     tel: {
       type: String,
-      default: ""
-    }
+      default: "",
+    },
+    showDownloadBtn: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -58,7 +62,7 @@ export default {
       telInput: "",
       code: "",
       countDown: 60,
-      showExplain: false
+      showExplain: false,
     };
   },
   created() {
@@ -72,10 +76,10 @@ export default {
       let data = {
         majia: this.$majia,
         mobile: this.txt,
-        authCodeType: 1
+        authCodeType: 1,
       };
       let res = await this.$ajax.get("/api/user/getAuthCode", {
-        params: data
+        params: data,
       });
 
       if (res && res.data) {
@@ -97,16 +101,18 @@ export default {
               path: "/info",
               query: {
                 userId: res.data.data.userId,
-                goWhichPage: this.$utls.goWhichPage(res.data.data.GoTo)
-              }
+                goWhichPage: this.$utls.goWhichPage(res.data.data.GoTo),
+                showDownloadBtn: this.showDownloadBtn,
+              },
             });
           } else if (res.data.data?.type === "2") {
             //已注册已填
             this.$router.push({
               path: this.$utls.goWhichPage(res.data.data.GoTo),
               query: {
-                userId: res.data.data.userId
-              }
+                userId: res.data.data.userId,
+                showDownloadBtn: this.showDownloadBtn,
+              },
             });
           }
         } else {
@@ -120,10 +126,10 @@ export default {
         mobile: this.txt,
         channelNo: this.$channelNo,
         majia: this.$majia,
-        requestType: "H5"
+        requestType: "H5",
       };
       let res = await this.$ajax.get("/api/user/loginByAuthCode", {
-        params: data
+        params: data,
       });
       if (res && res.data) {
         if (res.data.status == 0) {
@@ -131,8 +137,9 @@ export default {
             path: "/info",
             query: {
               userId: res.data.data.user.userId,
-              goWhichPage: this.$utls.goWhichPage(res.data.data.GoTo)
-            }
+              goWhichPage: this.$utls.goWhichPage(res.data.data.GoTo),
+              showDownloadBtn: this.showDownloadBtn,
+            },
           });
         } else {
           this.$toast(res.data.msg);
@@ -164,15 +171,15 @@ export default {
     },
     closeFun() {
       this.$emit("emitSMSCode");
-    }
+    },
   },
   watch: {
     code(val) {
       if (val.trim().length == 6) {
         this.login();
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="less" scoped>

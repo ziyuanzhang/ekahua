@@ -84,7 +84,37 @@
           alt=""
         />
       </div>
-      <div class="item">
+      <div class="item item-sex">
+        <div class="left">请选择性别</div>
+        <div class="right">
+          <div class="opt" @click="sexFun(1)">
+            <span class="radio">
+              <img
+                class="img"
+                v-if="sex == 1"
+                src="../assets/img/home/agree.png"
+                alt=""
+              />
+              <i v-else class="circle"></i>
+            </span>
+            男
+          </div>
+          <div class="opt" @click="sexFun(0)">
+            <span class="radio">
+              <img
+                class="img"
+                v-if="sex == 0"
+                src="../assets/img/home/agree.png"
+                alt=""
+              />
+              <i v-else class="circle"></i>
+            </span>
+            女
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="item">
         <div class="birthday" @click="birthdayFun">{{ birthday }}</div>
         <img
           v-if="birthday.length > 0"
@@ -93,7 +123,7 @@
           src="../assets/img/info/clear-icon.png"
           alt=""
         />
-      </div>
+      </div> -->
       <img
         class="encryptionTips"
         src="../assets/img/info/encryption-tips.png"
@@ -142,7 +172,7 @@ export default {
     VuePicker,
     vStay,
     vLicenseAgree,
-    vIosPickers
+    vIosPickers,
   },
   data() {
     return {
@@ -154,7 +184,7 @@ export default {
           val: "",
           txtImg: require("../assets/img/info/txt1.png"),
           iconImg: require("../assets/img/info/1.png"),
-          arr: []
+          arr: [],
         },
         {
           id: 1,
@@ -162,7 +192,7 @@ export default {
           val: "",
           txtImg: require("../assets/img/info/txt2.png"),
           iconImg: require("../assets/img/info/2.png"),
-          arr: ["3万-5万", "5万-10万", "10万-20万", "20万以上"]
+          arr: ["3万-5万", "5万-10万", "10万-20万", "20万以上"],
         },
         {
           id: 2,
@@ -178,8 +208,8 @@ export default {
             "旅游贷款",
             "医疗贷款",
             "消费贷款",
-            "其它贷款"
-          ]
+            "其它贷款",
+          ],
         },
         {
           id: 3,
@@ -187,7 +217,7 @@ export default {
           val: "",
           txtImg: require("../assets/img/info/txt4.png"),
           iconImg: require("../assets/img/info/4.png"),
-          arr: ["大于24个月", "12-24个月", "6-12个月 ", "3-6个月 ", "1-3个月"]
+          arr: ["大于24个月", "12-24个月", "6-12个月 ", "3-6个月 ", "1-3个月"],
         },
         {
           id: 4,
@@ -195,7 +225,7 @@ export default {
           val: "",
           txtImg: require("../assets/img/info/txt5.png"),
           iconImg: require("../assets/img/info/5.png"),
-          arr: ["高中及以下", "大专", "本科", "研究生", "博士及以上"]
+          arr: ["高中及以下", "大专", "本科", "研究生", "博士及以上"],
         },
         {
           id: 5,
@@ -203,7 +233,7 @@ export default {
           val: "",
           txtImg: require("../assets/img/info/txt6.png"),
           iconImg: require("../assets/img/info/6.png"),
-          arr: ["上班族", "企业主", "个体户", "公务员", "自由职业", "其他"]
+          arr: ["上班族", "企业主", "个体户", "公务员", "自由职业", "其他"],
         },
         {
           id: 6,
@@ -211,7 +241,7 @@ export default {
           val: "",
           txtImg: require("../assets/img/info/txt7.png"),
           iconImg: require("../assets/img/info/7.png"),
-          arr: ["十二个月以上", "六到十二个月", "六个月以下"]
+          arr: ["十二个月以上", "六到十二个月", "六个月以下"],
         },
         {
           id: 7,
@@ -219,7 +249,7 @@ export default {
           val: "",
           txtImg: require("../assets/img/info/txt8.png"),
           iconImg: require("../assets/img/info/8.png"),
-          arr: ["现金发放", "转账工资", "银行代发", "部分打卡", "部分现金"]
+          arr: ["现金发放", "转账工资", "银行代发", "部分打卡", "部分现金"],
         },
         {
           id: 8,
@@ -231,8 +261,8 @@ export default {
             "信用良好",
             "无逾期",
             "一年内逾期超过3次且小于90天",
-            "一年内逾期超过3次且超过90天"
-          ]
+            "一年内逾期超过3次且超过90天",
+          ],
         },
         {
           id: 9,
@@ -240,7 +270,7 @@ export default {
           val: "",
           txtImg: require("../assets/img/info/txt10.png"),
           iconImg: require("../assets/img/info/10.png"),
-          arr: ["3万以上", "1万到3万", "3千到1万", "3000以下", "无信用卡"]
+          arr: ["3万以上", "1万到3万", "3千到1万", "3000以下", "无信用卡"],
         },
         {
           id: 10,
@@ -248,7 +278,7 @@ export default {
           val: "",
           txtImg: require("../assets/img/info/txt11.png"),
           iconImg: require("../assets/img/info/11.png"),
-          arr: ["无社保", "未满6个月", "6个月以上", "12个月以上"]
+          arr: ["无社保", "未满6个月", "6个月以上", "12个月以上"],
         },
         {
           id: 11,
@@ -256,7 +286,7 @@ export default {
           val: "",
           txtImg: require("../assets/img/info/txt12.png"),
           iconImg: require("../assets/img/info/12.png"),
-          arr: ["没有断缴", "缴纳中", "当前已断缴纳"]
+          arr: ["没有断缴", "缴纳中", "当前已断缴纳"],
         },
         {
           id: 12,
@@ -264,7 +294,7 @@ export default {
           val: "",
           txtImg: require("../assets/img/info/txt13.png"),
           iconImg: require("../assets/img/info/13.png"),
-          arr: ["无公积金", "未满6个月", "6个月以上", "12个月以上"]
+          arr: ["无公积金", "未满6个月", "6个月以上", "12个月以上"],
         },
         {
           id: 13,
@@ -272,7 +302,7 @@ export default {
           val: "",
           txtImg: require("../assets/img/info/txt14.png"),
           iconImg: require("../assets/img/info/14.png"),
-          arr: ["没有断缴", "缴纳中", "当前已断缴纳"]
+          arr: ["没有断缴", "缴纳中", "当前已断缴纳"],
         },
         {
           id: 14,
@@ -280,7 +310,7 @@ export default {
           val: "",
           txtImg: require("../assets/img/info/txt15.png"),
           iconImg: require("../assets/img/info/15.png"),
-          arr: ["无房产", "有房不抵押", "有房可抵押"]
+          arr: ["无房产", "有房不抵押", "有房可抵押"],
         },
         {
           id: 15,
@@ -288,7 +318,7 @@ export default {
           val: "",
           txtImg: require("../assets/img/info/txt16.png"),
           iconImg: require("../assets/img/info/16.png"),
-          arr: ["无车产", "有车不抵押", "有车可抵押"]
+          arr: ["无车产", "有车不抵押", "有车可抵押"],
         },
         {
           id: 16,
@@ -296,7 +326,7 @@ export default {
           val: "",
           txtImg: require("../assets/img/info/txt17.png"),
           iconImg: require("../assets/img/info/17.png"),
-          arr: ["无保险保单", "缴纳未满1年", "缴纳1年以上"]
+          arr: ["无保险保单", "缴纳未满1年", "缴纳1年以上"],
         },
         {
           id: 17,
@@ -304,7 +334,7 @@ export default {
           val: "",
           txtImg: require("../assets/img/info/txt18.png"),
           iconImg: require("../assets/img/info/18.png"),
-          arr: ["无芝麻分", "600分以下", "600-650分", "650-700分", "700分以上"]
+          arr: ["无芝麻分", "600分以下", "600-650分", "650-700分", "700分以上"],
         },
         {
           id: 18,
@@ -312,8 +342,8 @@ export default {
           val: "",
           txtImg: require("../assets/img/info/txt19.png"),
           iconImg: require("../assets/img/info/19.png"),
-          arr: ["5千元以下", "5千-1万", "1万-1.5万", "1.5万-2万", "2万以上"]
-        }
+          arr: ["5千元以下", "5千-1万", "1万-1.5万", "1.5万-2万", "2万以上"],
+        },
       ],
       modifyId: 0,
       pickLayer: 2,
@@ -325,7 +355,8 @@ export default {
       showConfirm: false,
       isLeave: false,
       showDatePicker: false,
-      showLicenseAgree: false
+      showLicenseAgree: false,
+      sex: -1,
     };
   },
   created() {
@@ -344,7 +375,7 @@ export default {
           // 是否使用高精度定位，默认：true
           enableHighAccuracy: true,
           // 设置定位超时时间，默认：无穷大
-          timeout: 10000
+          timeout: 10000,
         });
         geolocation.getCityInfo((status, result) => {
           // console.log("getCityInfo:", status, result);
@@ -375,13 +406,16 @@ export default {
         let arr = this.list[item.id].arr.map((opt) => {
           return {
             label: opt,
-            value: opt
+            value: opt,
           };
         });
         this.pickLayer = 1;
         this.pickData = [arr];
       }
       this.pickerVisible = true;
+    },
+    sexFun(type) {
+      this.sex = Number(type);
     },
     showPicker(type) {
       console.log("showPicker:", type);
@@ -457,8 +491,12 @@ export default {
         this.$toast("年龄必填");
         return;
       }
-      if (this.birthday == "请输入您的出生日期") {
-        this.$toast("出生日期必填");
+      // if (this.birthday == "请输入您的出生日期") {
+      //   this.$toast("出生日期必填");
+      //   return;
+      // }
+      if (this.sex < 0) {
+        this.$toast("请选择性别");
         return;
       }
       this.showLicenseAgree = true;
@@ -495,7 +533,8 @@ export default {
       fd.append("monthlyIncome", this.list[18].val);
       fd.append("realName", this.name);
       fd.append("age", this.age);
-      fd.append("birthday", this.birthday);
+      fd.append("sex", this.sex);
+      // fd.append("birthday", this.birthday);
       if (type === "ok") {
         fd.append("push", 1);
       } else {
@@ -510,8 +549,9 @@ export default {
             path: "/check",
             query: {
               userId: this.$route.query.userId,
-              goWhichPage: this.$route.query.goWhichPage
-            }
+              goWhichPage: this.$route.query.goWhichPage,
+              showDownloadBtn: this.$route.query.showDownloadBtn,
+            },
           });
         }
       } else {
@@ -519,7 +559,7 @@ export default {
           this.$toast(res.data.msg);
         }
       }
-    }
+    },
   },
   beforeRouteLeave(to, from, next) {
     if (to.name === "Home") {
@@ -532,7 +572,7 @@ export default {
     } else {
       next();
     }
-  }
+  },
 };
 </script>
 <style lang="less" scoped>
@@ -759,6 +799,43 @@ export default {
         transform: translateY(-50%);
         width: 12px;
         height: 12px;
+      }
+    }
+    .item-sex {
+      display: flex;
+      align-items: center;
+      font-size: 15px;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: #7f7f7f;
+      .left {
+        margin: 0 40px 0 45px;
+      }
+      .right {
+        display: flex;
+        align-items: center;
+        .opt {
+          display: flex;
+          align-items: center;
+          margin-right: 60px;
+          .radio {
+            margin-right: 5px;
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            .img {
+              width: 16px;
+            }
+            .circle {
+              display: inline-block;
+              width: 16px;
+              height: 16px;
+              border: 2px solid #bfbfbf;
+              border-radius: 100px;
+              box-sizing: border-box;
+            }
+          }
+        }
       }
     }
     .encryptionTips {

@@ -20,6 +20,7 @@
           <div class="item">
             <img class="img" :src="list[0].apiLogo" alt="" />
             <p class="txt">{{ list[0].apiName }}</p>
+            <p class="company">{{list[0].apiCompanyName}}</p>
             <!-- <img class="img" src="../assets/img/combo1/ads.png" alt="" />
             <p class="txt">融360</p> -->
             <span class="btn" @click="showMoreFn"
@@ -36,6 +37,7 @@
           <div class="item" v-for="(item, index) in list" :key="item.id">
             <img class="img" :src="item.apiLogo" alt="" />
             <p class="txt">{{ item.apiName }}</p>
+            <p class="company">{{item.apiCompanyName}}</p>
             <!-- <img class="img" src="../assets/img/combo1/ads.png" alt="" />
             <p class="txt">融360</p> -->
             <span class="btn" v-if="index == 0" @click="hideMoreFn"
@@ -220,11 +222,12 @@ export default {
       // align-items: center;
       // justify-content: center;
       .item {
-        height: 80px;
+       // height: 80px;
+       padding: 10px 0;
         min-width: 30%;
         border-bottom: 1px dashed #d8d9da;
         .img {
-          margin-top: 12px;
+          //margin-top: 12px;
           width: 40px;
         }
         .txt {
@@ -233,6 +236,14 @@ export default {
           font-family: PingFang SC;
           font-weight: bold;
           color: #1f1a20;
+        }
+        .company{
+          transform: scale(0.8);
+          margin-top: 4px;
+          font-size: 10px;
+          font-family: PingFang SC;
+          font-weight: 500;
+          color: #CDCBCB;
         }
         .btn {
           font-size: 9px;

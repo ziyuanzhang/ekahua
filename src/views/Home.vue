@@ -73,14 +73,19 @@
       src="../assets/img/home/shield.png"
       alt=""
     />
-    <VSMSCode v-if="showSMSCode" :tel="mobileNum" @emitSMSCode="eventSMSCode" />
+    <VSMSCode
+      v-if="showSMSCode"
+      :tel="mobileNum"
+      :showDownloadBtn="showDownloadBtn"
+      @emitSMSCode="eventSMSCode"
+    />
   </div>
 </template>
 <script>
 import VSMSCode from "@/components/VSMSCode";
 export default {
   components: {
-    VSMSCode
+    VSMSCode,
   },
   data() {
     return {
@@ -91,7 +96,8 @@ export default {
       showSMSCode: false,
       showAgreeTips: false,
       topbg: "",
-      VUE_APP_HAS_JS: process.env.VUE_APP_HAS_JS
+      VUE_APP_HAS_JS: process.env.VUE_APP_HAS_JS,
+      showDownloadBtn: false,
     };
   },
   async created() {
@@ -145,7 +151,7 @@ export default {
     async browserCount() {
       let data = {
         channelNo: this.$channelNo,
-        clientType: this.$clientType
+        clientType: this.$clientType,
       };
       let res = await this.$ajax.get("/ad/browserCount", { params: data });
       if (res && res.data && res.data.msg == "success") {
@@ -154,24 +160,25 @@ export default {
     },
     //-----检测是否下架------
     async checkTakeDown() {
-      let takeDownData = { channelNo: this.$channelNo };
-      let takeDownRes = await this.$ajax.get("/api/common/checkChannel", {
-        params: takeDownData
+      let data = { channelNo: this.$channelNo };
+      let res = await this.$ajax.get("/api/common/checkChannel", {
+        params: data,
       });
-      if (takeDownRes && takeDownRes.data.status === 1) {
+      if (res && res.data.status === 1) {
         this.$router.push({
-          name: "page404"
+          name: "page404",
         });
       }
+      this.showDownloadBtn = res?.data.data.downloadStatus == 1 ? true : false;
     },
     //-------获取ICP--------
     async getTCP() {
       let recordData = {
         configType: "ICP",
-        majia: this.$majia
+        majia: this.$majia,
       };
       let recordRes = await this.$ajax.get("/api/common/getConfig", {
-        params: recordData
+        params: recordData,
       });
 
       if (recordRes && recordRes.data.status == 0) {
@@ -183,8 +190,8 @@ export default {
     //-------------------------
     eventSMSCode() {
       this.showSMSCode = false;
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="less" scoped>

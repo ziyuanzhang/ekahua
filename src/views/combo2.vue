@@ -5,6 +5,7 @@
       @click="downloadFun"
       src="../assets/img/combo1/left-more.png"
       alt=""
+      v-if="showDownloadBtn"
     />
     <img class="tips-top" src="../assets/img/combo1/tips-top.png" alt="" />
     <img class="pass" src="../assets/img/combo1/pass.png" alt="" />
@@ -22,7 +23,7 @@
       :showWarn="true"
       :userId="$route.query.userId"
     ></vProduct>
-    <div class="btn-list">
+    <div class="btn-list" v-if="showDownloadBtn">
       <img class="tips" src="../assets/img/combo1/tips-app.png" />
       <img
         class="btn"
@@ -41,16 +42,19 @@
 import vProduct from "../components/vProduct";
 export default {
   components: {
-    vProduct
+    vProduct,
   },
   data() {
     return {
       showA: true,
       list: [],
-      amount: 0
+      amount: 0,
+      showDownloadBtn: true,
     };
   },
   async created() {
+    this.showDownloadBtn =
+      this.$route.query.showDownloadBtn == "true" ? true : false;
     //-------------
     let fd = new FormData();
     fd.append("userId", this.$route.query.userId);
@@ -68,7 +72,7 @@ export default {
             feature: ele.desc,
             time: ele.loanTermDesc,
             url: ele.url,
-            id: ele.productId
+            id: ele.productId,
           };
         });
       }
@@ -102,8 +106,8 @@ export default {
         window.location.href =
           "itms-services://?action=download-manifest&url=https://zhaowojie.oss-cn-shanghai.aliyuncs.com/app/manifest_ekahua.plist";
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="less" scoped>
